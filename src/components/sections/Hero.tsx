@@ -1,7 +1,8 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown } from "lucide-react"
-import heroImage from "../../assets/properties/hero-house-dusk.jpg"
+import heroVideo from "../../assets/video/hero-cafezal.mp4"
+import heroPoster from "../../assets/video/hero-poster.webp"
 import { Button } from "../ui/Button"
 import { WhatsAppIcon } from "../ui/WhatsAppIcon"
 import { CountUp } from "../ui/CountUp"
@@ -10,7 +11,7 @@ import { hero, waLink, waMessages } from "../../lib/content"
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"])
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"])
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0])
   const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.85])
@@ -18,13 +19,19 @@ export function Hero() {
   return (
     <section id="top" ref={ref} className="relative min-h-[100svh] w-full overflow-hidden bg-ink-950">
       <motion.div style={{ y: imageY }} className="absolute inset-0 scale-110">
-        <img
-          src={heroImage}
-          alt="Casa moderna ao entardecer, com fachada iluminada e paisagismo cuidado"
-          className="h-full w-full object-cover"
-          fetchPriority="high"
-        />
+        <video
+          className="h-full w-full object-cover object-bottom"
+          poster={heroPoster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
       </motion.div>
+
       <motion.div
         style={{ opacity: overlayOpacity }}
         className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/55 to-ink-950/20"
@@ -72,7 +79,7 @@ export function Hero() {
           <Button href={waLink(waMessages.hero)} icon={<WhatsAppIcon className="h-5 w-5" />}>
             {hero.ctaPrimary}
           </Button>
-          <Button href="#diferenciais" variant="outline">
+          <Button href="#empreendimentos" variant="outline">
             {hero.ctaSecondary}
           </Button>
         </motion.div>

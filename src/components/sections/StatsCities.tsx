@@ -2,11 +2,12 @@ import { MapPin } from "lucide-react"
 import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal"
 import { CountUp } from "../ui/CountUp"
 import { cities } from "../../lib/content"
+import { terrenosStats } from "../../lib/terrenos"
 
 const stats = [
-  { value: "100%", label: "Financiamento facilitado, do terreno à construção" },
-  { value: "5", label: "Motivos reais pra fechar com a gente" },
-  { value: "4+", label: "Cidades atendidas no Paraná e Santa Catarina" },
+  { value: "100%", label: "Entrada parcelada em todos os lançamentos" },
+  { value: `${terrenosStats.totalLotes}+`, label: "Terrenos disponíveis pra construir" },
+  { value: "3", label: "Cidades atendidas com atendimento local" },
 ]
 
 export function StatsCities() {
@@ -28,11 +29,11 @@ export function StatsCities() {
           <div className="max-w-lg">
             <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">Onde estamos</span>
             <h2 className="mt-4 font-display text-3xl font-semibold text-ink-950 text-balance sm:text-4xl">
-              Atendemos todo o Paraná — e já chegamos em Santa Catarina
+              Londrina, Umuarama e Cafezal do Sul
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-ink-950/60">
-            De Londrina a Joinville, nossa consultoria acompanha você onde quer que o seu próximo endereço esteja.
+            Atendimento 100% online em qualquer lugar — e acompanhamento presencial junto à construtora nas nossas cidades de atuação.
           </p>
         </Reveal>
 

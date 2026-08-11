@@ -1,10 +1,10 @@
 import { useRef, type MouseEvent } from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { Home, Building2, TrendingUp, HeartHandshake, type LucideIcon } from "lucide-react"
+import { Smartphone, Building2, Wallet, HeartHandshake, type LucideIcon } from "lucide-react"
 import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal"
 import { diferenciais } from "../../lib/content"
 
-const icons: Record<string, LucideIcon> = { Home, Building2, TrendingUp, HeartHandshake }
+const icons: Record<string, LucideIcon> = { Smartphone, Building2, Wallet, HeartHandshake }
 
 function TiltCard({ icon, title, description }: { icon: string; title: string; description: string }) {
   const Icon = icons[icon]
