@@ -76,6 +76,15 @@ export function Journey() {
     return () => ctx.revert()
   }, [usePinnedStack])
 
+  // Swapping between the pinned-stack and mobile-list layouts changes this
+  // section's height (and can toggle the page's scrollbar), which leaves
+  // OTHER pinned sections (e.g. CinematicScroll) with a stale pin-spacer
+  // width unless every ScrollTrigger recalculates after the DOM settles.
+  useLayoutEffect(() => {
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh())
+    return () => cancelAnimationFrame(id)
+  }, [usePinnedStack])
+
   return (
     <section id="jornada" ref={sectionRef} className="relative overflow-hidden bg-ink-950">
       <div className={`flex h-auto w-full flex-col justify-center py-24 ${usePinnedStack ? "min-h-screen lg:h-screen lg:py-0" : ""}`}>
