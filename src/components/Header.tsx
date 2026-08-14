@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
 import { Logo } from "./ui/Logo"
 import { Button } from "./ui/Button"
 import { WhatsAppIcon } from "./ui/WhatsAppIcon"
@@ -9,6 +10,12 @@ import { nav, waLink, waMessages } from "../lib/content"
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  // Só a Home abre com o hero escuro em tela cheia por trás do header — nas demais
+  // páginas (fundo claro logo no topo) o header precisa começar sólido, senão o
+  // logo e a navegação (claros) ficam ilegíveis sobre o fundo.
+  const isHome = pathname === "/"
+  const solid = scrolled || !isHome
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -20,23 +27,23 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-500 ${
-        scrolled ? "bg-ink-950/90 shadow-lg shadow-black/20 backdrop-blur-md" : "bg-transparent"
+        solid ? "bg-ink-950/90 shadow-lg shadow-black/20 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#top" aria-label="Imóveis dos Sonhos — início">
+        <Link to="/" aria-label="Imóveis dos Sonhos — início">
           <Logo variant="light" />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {nav.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="text-sm font-semibold text-cream-50/80 transition-colors hover:text-gold-400"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -66,14 +73,14 @@ export function Header() {
           >
             <div className="flex flex-col gap-1 px-5 pb-6">
               {nav.map((item) => (
-                <a
+                <Link
                   key={item.href}
-                  href={item.href}
+                  to={item.href}
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-3 text-base font-semibold text-cream-50/85 hover:bg-white/5 hover:text-gold-400"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
               <Button
                 href={waLink(waMessages.header)}

@@ -1,12 +1,18 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown } from "lucide-react"
-import heroVideo from "../../assets/video/hero-cafezal.mp4"
-import heroPoster from "../../assets/video/hero-poster.webp"
+import heroHouseDusk from "../../assets/hero-ai/house-dusk.webp"
+import heroStreet from "../../assets/hero-ai/street-golden-hour.webp"
+import heroLivingRoom from "../../assets/hero-ai/living-room-warm.webp"
+import heroFamily from "../../assets/hero-ai/family-silhouette.webp"
 import { Button } from "../ui/Button"
+import { LinkButton } from "../ui/LinkButton"
 import { WhatsAppIcon } from "../ui/WhatsAppIcon"
 import { CountUp } from "../ui/CountUp"
+import { KenBurnsSlideshow } from "../ui/KenBurnsSlideshow"
 import { hero, waLink, waMessages } from "../../lib/content"
+
+const heroImages = [heroHouseDusk, heroStreet, heroLivingRoom, heroFamily]
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -19,17 +25,7 @@ export function Hero() {
   return (
     <section id="top" ref={ref} className="relative min-h-[100svh] w-full overflow-hidden bg-ink-950">
       <motion.div style={{ y: imageY }} className="absolute inset-0 scale-110">
-        <video
-          className="h-full w-full object-cover object-bottom"
-          poster={heroPoster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        <KenBurnsSlideshow images={heroImages} />
       </motion.div>
 
       <motion.div
@@ -79,9 +75,9 @@ export function Hero() {
           <Button href={waLink(waMessages.hero)} icon={<WhatsAppIcon className="h-5 w-5" />}>
             {hero.ctaPrimary}
           </Button>
-          <Button href="#empreendimentos" variant="outline">
+          <LinkButton to="/imoveis" variant="outline">
             {hero.ctaSecondary}
-          </Button>
+          </LinkButton>
         </motion.div>
 
         <motion.div

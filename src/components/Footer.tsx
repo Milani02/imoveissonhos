@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { InstagramIcon } from "./ui/InstagramIcon"
 import { Logo } from "./ui/Logo"
 import { WhatsAppIcon } from "./ui/WhatsAppIcon"
@@ -39,9 +40,9 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {nav.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} className="text-sm text-cream-100/65 transition-colors hover:text-gold-400">
+                    <Link to={item.href} className="text-sm text-cream-100/65 transition-colors hover:text-gold-400">
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

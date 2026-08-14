@@ -1,102 +1,42 @@
 import { useLayoutEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import stageLand from "../../assets/atmosphere-ai/stage-01-land.webp"
+import stageConstruction from "../../assets/atmosphere-ai/stage-02-construction.webp"
+import stageStreets from "../../assets/atmosphere-ai/stage-03-streets.webp"
+import stageFinished from "../../assets/atmosphere-ai/stage-04-finished.webp"
+import { growthStory } from "../../lib/content"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const FRAME_COUNT = 96
-const framePath = (i: number) => `/frames/cafezal/f${String(i).padStart(3, "0")}.webp`
+const stages = [stageLand, stageConstruction, stageStreets, stageFinished]
 
 /**
- * Signature "video fragmentado em imagens": a sequência real de frames do drone
- * de Cafezal do Sul, desenhada em canvas em tela cheia e escrubada pelo scroll
- * via GSAP — não é um vídeo tocando, é o próprio scroll do usuário que controla
- * o tempo.
+ * Scroll-scrubbed crossfade through a growth narrative (terreno → obra →
+ * ruas → bairro pronto) — plain <img> layers driven by GSAP instead of a
+ * canvas frame sequence, since these are independently generated stills
+ * rather than a real continuous shot.
  */
 export function CinematicScroll() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([])
   const line1Ref = useRef<HTMLDivElement>(null)
   const line2Ref = useRef<HTMLDivElement>(null)
   const line3Ref = useRef<HTMLDivElement>(null)
-  const imagesRef = useRef<HTMLImageElement[]>([])
-  const frameState = useRef({ index: 0 })
 
   useLayoutEffect(() => {
     const section = sectionRef.current
-    const canvas = canvasRef.current
-    if (!section || !canvas) return
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    if (!section) return
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-    function draw() {
-      const img = imagesRef.current[frameState.current.index]
-      if (!img || !img.complete || img.naturalWidth === 0) return
-      const cw = canvas!.clientWidth
-      const ch = canvas!.clientHeight
-      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight)
-      const dw = img.naturalWidth * scale
-      const dh = img.naturalHeight * scale
-      ctx!.clearRect(0, 0, cw, ch)
-      ctx!.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh)
-    }
+    const images = imageRefs.current.filter(Boolean) as HTMLImageElement[]
+    gsap.set(images[0], { opacity: 1, scale: 1 })
+    images.slice(1).forEach((img) => gsap.set(img, { opacity: 0, scale: 1 }))
 
-    // Sizes the canvas bitmap from an authoritative rect (either a
-    // ResizeObserver entry or a fresh getBoundingClientRect), never from a
-    // possibly-stale clientWidth read — that staleness is what left a gap
-    // on mobile when the pinned section's width was captured a beat late.
-    function applySize(width: number, height: number) {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas!.width = Math.max(1, Math.round(width * dpr))
-      canvas!.height = Math.max(1, Math.round(height * dpr))
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0)
-      draw()
-    }
+    if (prefersReduced) return
 
-    function resize() {
-      const rect = canvas!.getBoundingClientRect()
-      applySize(rect.width, rect.height)
-      ScrollTrigger.refresh()
-    }
-
-    const images: HTMLImageElement[] = []
-    for (let i = 0; i < FRAME_COUNT; i++) {
-      const img = new Image()
-      img.decoding = "async"
-      img.onload = draw
-      img.src = framePath(i)
-      images.push(img)
-    }
-    imagesRef.current = images
-
-    // ResizeObserver catches mobile viewport changes (address bar show/hide,
-    // orientation change) that don't always fire a window "resize" event.
-    const ro = new ResizeObserver((entries) => {
-      const entry = entries[0]
-      if (entry) applySize(entry.contentRect.width, entry.contentRect.height)
-      ScrollTrigger.refresh()
-    })
-    ro.observe(canvas)
-    window.addEventListener("resize", resize)
-    window.visualViewport?.addEventListener("resize", resize)
-    resize()
-    // One more pass after everything (fonts, layout) has settled.
-    const settleTimer = window.setTimeout(resize, 500)
-
-    if (prefersReduced) {
-      frameState.current.index = Math.floor(FRAME_COUNT / 2)
-      draw()
-      return () => {
-        window.removeEventListener("resize", resize)
-        window.visualViewport?.removeEventListener("resize", resize)
-        window.clearTimeout(settleTimer)
-        ro.disconnect()
-      }
-    }
-
-    const ctxGsap = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const distance = () => window.innerHeight * 2.2
 
       const tl = gsap.timeline({
@@ -107,15 +47,21 @@ export function CinematicScroll() {
           scrub: 0.4,
           pin: true,
           invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            const idx = Math.min(FRAME_COUNT - 1, Math.floor(self.progress * FRAME_COUNT))
-            if (idx !== frameState.current.index) {
-              frameState.current.index = idx
-              draw()
-            }
-          },
         },
       })
+
+      // Each stage owns a quarter of the scroll; images crossfade at the
+      // boundaries while continuously drifting in scale (Ken Burns).
+      const n = images.length
+      for (let i = 0; i < n; i++) {
+        const start = i / n
+        tl.to(images[i], { scale: 1.14, duration: 1 / n, ease: "none" }, start)
+        if (i < n - 1) {
+          const fadeStart = start + 1 / n - 0.06
+          tl.to(images[i], { opacity: 0, duration: 0.1, ease: "power1.in" }, fadeStart)
+            .to(images[i + 1], { opacity: 1, duration: 0.1, ease: "power1.out" }, fadeStart)
+        }
+      }
 
       tl.fromTo(line1Ref.current, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.12 }, 0.02)
         .to(line1Ref.current, { opacity: 0, y: -26, duration: 0.1 }, 0.17)
@@ -125,38 +71,44 @@ export function CinematicScroll() {
         .to(line3Ref.current, { opacity: 0, y: -26, duration: 0.1 }, 0.93)
     }, sectionRef)
 
-    return () => {
-      window.removeEventListener("resize", resize)
-      window.visualViewport?.removeEventListener("resize", resize)
-      window.clearTimeout(settleTimer)
-      ro.disconnect()
-      ctxGsap.revert()
-    }
+    return () => ctx.revert()
   }, [])
 
   return (
     <section ref={sectionRef} className="relative h-[100svh] w-full overflow-hidden bg-ink-950">
-      {/* scale-105 overscans the canvas slightly so sub-pixel rounding on
-          high-DPI phones (bitmap px vs CSS px never divide evenly) never
-          leaves a hairline gap at the edge. */}
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full scale-105" />
+      <div className="absolute inset-0 scale-105">
+        {stages.map((src, i) => (
+          <img
+            key={src}
+            ref={(el) => {
+              imageRefs.current[i] = el
+            }}
+            src={src}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ))}
+      </div>
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink-950/50 via-transparent to-ink-950/75" />
 
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center">
         <div ref={line1Ref} className="absolute font-display text-5xl font-semibold text-cream-50 opacity-0 sm:text-7xl">
-          Cafezal do Sul
+          {growthStory.line1}
         </div>
         <div
           ref={line2Ref}
           className="absolute max-w-2xl font-display text-3xl font-semibold text-cream-50 text-balance opacity-0 sm:text-5xl"
         >
-          Um bairro inteiro <span className="text-gold-400 italic">nascendo</span>
+          {growthStory.line2Pre}
+          <span className="text-gold-400 italic">{growthStory.line2Emphasis}</span>
+          {growthStory.line2Post}
         </div>
         <div
           ref={line3Ref}
           className="absolute max-w-2xl font-display text-3xl font-semibold text-cream-50 text-balance opacity-0 sm:text-5xl"
         >
-          Sua próxima casa pode <span className="text-gold-400 italic">estar aqui</span>
+          {growthStory.line3Pre}
+          <span className="text-gold-400 italic">{growthStory.line3Emphasis}</span>
         </div>
       </div>
 

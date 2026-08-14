@@ -11,11 +11,12 @@ interface ButtonProps {
   onClick?: () => void
 }
 
-const variants = {
+export const buttonVariants = {
   gold: "bg-gold-500 text-ink-950 hover:bg-gold-400 shadow-[0_8px_30px_-8px_rgba(242,194,48,0.6)]",
   outline: "border-2 border-cream-50/30 text-cream-50 hover:border-gold-500 hover:text-gold-400",
   ghost: "border-2 border-ink-950/15 text-ink-950 hover:border-gold-600 hover:text-gold-700",
 }
+const variants = buttonVariants
 
 export function Button({ href, children, variant = "gold", icon, className, onClick }: ButtonProps) {
   return (

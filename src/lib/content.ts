@@ -15,12 +15,6 @@ export const waMessages = {
   floating: "Olá! Vi o site e gostaria de saber mais sobre os imóveis exclusivos da Imóveis dos Sonhos 🏡",
   hero: "Olá! Quero sair do aluguel e simular meu financiamento com a Imóveis dos Sonhos.",
   comparison: "Olá! Não sei se compro imóvel pronto ou na planta. Podem me ajudar a decidir?",
-  journey: "Olá! Quero fazer minha simulação 100% online com a Imóveis dos Sonhos.",
-  gallery: "Olá! Vi os lançamentos no site e quero saber mais detalhes.",
-  brisaDoVale: "Olá! Tenho interesse no Residências Brisa do Vale, em Umuarama. Podem me passar mais informações?",
-  cafezal: "Olá! Tenho interesse no lançamento em Cafezal do Sul. Podem me passar mais informações?",
-  terreno: "Olá! Vi os terrenos no site e quero simular a compra de um deles.",
-  chacara: "Olá! Tenho interesse em uma chácara. Podem me passar mais informações?",
   finalCta: "Olá! Vim pelo site e quero falar com um especialista agora.",
 }
 
@@ -33,11 +27,11 @@ export const siteMeta = {
 }
 
 export const nav = [
-  { label: "Diferenciais", href: "#diferenciais" },
-  { label: "Lançamentos", href: "#empreendimentos" },
-  { label: "Terrenos", href: "#terrenos" },
-  { label: "Jornada", href: "#jornada" },
-  { label: "Cidades", href: "#cidades" },
+  { label: "Home", href: "/" },
+  { label: "Imóveis", href: "/imoveis" },
+  { label: "Lançamentos", href: "/imoveis?categoria=lancamento" },
+  { label: "Terrenos", href: "/imoveis?categoria=terreno" },
+  { label: "Sobre", href: "/sobre" },
 ]
 
 export const hero = {
@@ -182,57 +176,19 @@ export const fiveReasons = {
   ],
 }
 
+export const growthStory = {
+  line1: "Do terreno à chave",
+  line2Pre: "Um bairro nascendo, ",
+  line2Emphasis: "um sonho",
+  line2Post: " de cada vez",
+  line3Pre: "Sua próxima casa pode ",
+  line3Emphasis: "estar aqui",
+}
+
 export const empreendimentos = {
   eyebrow: "Lançamentos em destaque",
   heading: "Empreendimentos saindo do papel — e do sonho pra realidade",
   body: "Conheça de perto os lançamentos que estão transformando bairros inteiros em Umuarama e Cafezal do Sul.",
-}
-
-export const brisaDoVale = {
-  nome: "Residências Brisa do Vale",
-  cidade: "Umuarama · PR",
-  bairro: "Parque Residencial Viena",
-  precoDesde: "R$ 204.900",
-  destaques: [
-    "Financiamento pelo programa Minha Casa Minha Vida",
-    "Entrada 100% parcelada",
-    "Plantas de 43,73 m² e 49,73 m²",
-    "Terrenos de até 152,90 m²",
-    "Ao lado de uma ampla área verde",
-    "A poucos minutos do IFPR e do aeroporto",
-  ],
-  plantas: [
-    { nome: "Planta 1", area: "43,73 m²", detalhe: "2 dormitórios, coz/sala integrada" },
-    { nome: "Planta 2", area: "49,73 m²", detalhe: "Suíte + dormitório, 2 banheiros" },
-  ],
-}
-
-export const cafezal = {
-  nome: "Novo Lançamento",
-  cidade: "Cafezal do Sul · PR",
-  precoDesde: "R$ 190.000",
-  unidades: "Apenas 19 unidades",
-  areaConstruida: "48 m²",
-  destaques: [
-    "2 quartos, sala, cozinha e BWC social",
-    "Lavanderia coberta",
-    "Vaga de garagem descoberta",
-    "Terrenos de até 204 m²",
-    "Apenas 19 unidades disponíveis",
-  ],
-}
-
-export const terrenosSection = {
-  eyebrow: "Terrenos e Chácaras",
-  heading: "Escolha o chão — a casa dos seus sonhos vem depois",
-  body: "Dezenas de lotes prontos pra construir, em loteamentos residenciais consolidados. Sem fotos, sem enrolação: aqui está exatamente onde fica, quanto mede e quanto custa.",
-  ctaLabel: "Simular um terreno",
-}
-
-export const chacarasSection = {
-  eyebrow: "Pra quem sonha grande",
-  heading: "Chácaras",
-  body: "Espaço, natureza e um investimento que só cresce.",
 }
 
 export const finalCta = {
@@ -241,6 +197,53 @@ export const finalCta = {
   body: "Fale agora com um especialista e descubra em minutos se você já pode sair do aluguel.",
   cta: "Falar no WhatsApp agora",
 }
+
+export const sobre = {
+  eyebrow: "Sobre a Imóveis dos Sonhos",
+  heading: "Uma imobiliária 100% digital, do primeiro contato às chaves",
+  intro:
+    "Somos uma imobiliária 100% digital, com foco principalmente em lançamentos imobiliários — mas também com casas e apartamentos prontos pra morar.",
+  paragrafos: [
+    "Nosso primeiro atendimento é feito totalmente online: entendemos o que você procura, apresentamos as opções disponíveis e realizamos a simulação, sem você precisar sair de casa.",
+    "Depois do atendimento inicial, encaminhamos você para um atendimento presencial junto à construtora responsável pelo empreendimento, onde pode conhecer o projeto de perto, tirar dúvidas e dar continuidade à negociação.",
+    "Hoje atendemos Londrina, Umuarama e Cafezal do Sul, sempre com a mesma proposta: entrada 100% parcelada e acompanhamento pessoal em cada etapa da conquista do seu imóvel.",
+  ],
+  contatos: [
+    { cidade: "Londrina e Cafezal do Sul", numero: "(43) 99183-9425" },
+    { cidade: "Umuarama", numero: "(44) 99159-4260" },
+  ],
+}
+
+export const depoimentos = {
+  eyebrow: "Quem já conquistou",
+  heading: "O que dizem os nossos clientes",
+  body: "Cada mensagem aqui é de alguém que trocou o aluguel por um endereço próprio.",
+}
+
+// Textos reais, extraídos das conversas de WhatsApp enviadas pelo cliente como prova social.
+// Nome do cliente não identificado nas capturas — usamos um rótulo genérico em vez de inventar um nome.
+export const depoimentosLista = [
+  {
+    texto:
+      "Quero deixar aqui meu agradecimento pelo atendimento incrível! 🙏 Sempre soubemos que um dia iríamos conquistar nosso imóvel próprio, mas não imaginávamos que seria tão rápido assim. Vc foi essencial nesse processo, sempre tirando todas as nossas dúvidas com paciência e clareza, passando muita segurança em cada etapa. Hoje eu e minha família estamos realizando um grande sonho, e isso só foi possível graças ao seu profissionalismo e dedicação. Atendimento excelente, de verdade! Profissional top 👏 Muito obrigado por tudo!",
+    nome: "Cliente Imóveis dos Sonhos",
+  },
+  {
+    texto:
+      "Vou ser sincero contigo, no início eu não acreditava em nada, principalmente quando você falou que não precisa de entrada à vista, fiquei sem acreditar e pedi pra ir no escritório falar pessoalmente 😅 mas enfim... Sem palavras pra descrever o quanto somos gratos por todo o suporte que você nos deu! 🙏 Você veio e mostrou que era possível ter uma casa própria sem precisar ter um grande recurso financeiro. Isso mudou tudo pra gente. Hoje estamos realizando um sonho que não é só nosso, mas da nossa família inteira. É uma sensação que não tem preço. Obrigado de coração pelo seu esforço, dedicação e profissionalismo. Seu atendimento foi simplesmente incrível! 👏🔥",
+    nome: "Cliente Imóveis dos Sonhos",
+  },
+  {
+    texto:
+      "O seu atendimento é nota 10. Fui muito bem atendido. Sempre deu atenção e sanou as dúvidas, independente do horário que mandasse mensagem. E poder estar adquirindo a casa própria foi um marco muito importante na minha vida e da minha família. Sem dúvidas tudo isso é muito gratificante!",
+    nome: "Cliente Imóveis dos Sonhos",
+  },
+  {
+    texto:
+      "Ritchy, queria agradecer pelo atendimento na compra do imóvel, principalmente pelo seu atendimento. Obrigado por ajudar a gente a conquistar o sonho da casa própria 🙏😁",
+    nome: "Cliente Imóveis dos Sonhos",
+  },
+]
 
 export const footer = {
   tagline: "Mais que imóveis, realizamos sonhos.",
