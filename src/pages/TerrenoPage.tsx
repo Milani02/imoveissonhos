@@ -9,7 +9,6 @@ import { MapaLink } from "../components/imovel/MapaLink"
 import { Gallery } from "../components/imovel/Gallery"
 import { ContourLines } from "../components/ui/ContourLines"
 import { loteamentosImoveis, waLinkForImovel } from "../lib/imoveis"
-import { formatBRL } from "../lib/terrenos"
 import { NotFound } from "../components/NotFound"
 
 export function TerrenoPage() {
@@ -63,12 +62,11 @@ export function TerrenoPage() {
           <div className="mt-6 overflow-x-auto rounded-2xl border border-cream-50/10">
             <table className="w-full min-w-[640px] table-fixed border-collapse text-left text-sm">
               <colgroup>
-                <col className="w-[22%]" />
-                <col className="w-[20%]" />
-                <col className="w-[14%]" />
-                <col className="w-[18%]" />
+                <col className="w-[26%]" />
+                <col className="w-[24%]" />
                 <col className="w-[16%]" />
-                <col className="w-[10%]" />
+                <col className="w-[22%]" />
+                <col className="w-[12%]" />
               </colgroup>
               <thead>
                 <tr className="border-b border-cream-50/10 text-xs font-bold tracking-[0.1em] text-cream-100/40 uppercase">
@@ -76,7 +74,6 @@ export function TerrenoPage() {
                   <th className="px-5 py-4">Dimensões</th>
                   <th className="px-5 py-4">Área</th>
                   <th className="px-5 py-4">Matrícula</th>
-                  <th className="px-5 py-4 text-right">Valor</th>
                   <th className="px-5 py-4 text-right">Mapa</th>
                 </tr>
               </thead>
@@ -96,9 +93,6 @@ export function TerrenoPage() {
                     <td className="px-5 py-4 text-cream-100/70">{lote.dimensoes} m</td>
                     <td className="px-5 py-4 tabular-nums text-cream-100/70">{lote.area.toLocaleString("pt-BR")} m²</td>
                     <td className="px-5 py-4 text-cream-100/50">{lote.matricula}</td>
-                    <td className="px-5 py-4 text-right font-display font-semibold tabular-nums text-gold-400">
-                      {formatBRL(lote.valor)}
-                    </td>
                     <td className="px-5 py-4 text-right">
                       <a
                         href={lote.mapaLink}

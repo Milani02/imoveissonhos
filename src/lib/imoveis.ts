@@ -3,7 +3,6 @@
 // e da Tabela de Preços - Terrenos e Chácaras (planilha de uma imobiliária parceira — por pedido
 // do cliente, nenhuma marca/identificação da parceira é exibida, apenas os dados do lote em si).
 import { whatsappNumbers, waLink } from "./content"
-import { formatBRL } from "./terrenos"
 import terrenoGenerico from "../assets/generico/terreno-01.webp"
 import chacaraGenerica from "../assets/generico/chacara-01.webp"
 
@@ -20,8 +19,6 @@ interface ImovelBase {
   nome: string
   cidade: string
   bairro?: string
-  precoDesde?: string
-  precoLabel?: string
   capa: string
   galeria: string[]
   destaques: string[]
@@ -99,7 +96,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Floriatto — Morada dos Ventos",
     cidade: "Londrina",
     bairro: "Califórnia",
-    precoLabel: "consulte plantas e condições",
     capa: galleryFor("floriatto-morada-dos-ventos")[0],
     galeria: galleryFor("floriatto-morada-dos-ventos"),
     destaques: [
@@ -127,7 +123,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Granví",
     cidade: "Londrina",
     bairro: "Portal Itamaracá 2",
-    precoLabel: "consulte plantas e condições",
     capa: galleryFor("granvi")[0],
     galeria: galleryFor("granvi"),
     destaques: [
@@ -152,7 +147,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial La Roche",
     cidade: "Londrina",
     bairro: "Zona Leste",
-    precoLabel: "pelo Minha Casa, Minha Vida",
     capa: galleryFor("residencial-la-roche")[0],
     galeria: galleryFor("residencial-la-roche"),
     destaques: [
@@ -177,7 +171,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Lake Dalí",
     cidade: "Londrina",
     bairro: "Acquaville",
-    precoLabel: "consulte plantas e condições",
     capa: galleryFor("residencial-lake-dali")[0],
     galeria: galleryFor("residencial-lake-dali"),
     destaques: [
@@ -200,7 +193,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Lancelot",
     cidade: "Londrina",
     bairro: "Zona Norte",
-    precoLabel: "pelo Minha Casa, Minha Vida",
     capa: galleryFor("residencial-lancelot")[0],
     galeria: galleryFor("residencial-lancelot"),
     destaques: [
@@ -224,7 +216,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Le Ciel",
     cidade: "Londrina",
     bairro: "Parque Jamaica",
-    precoLabel: "consulte plantas e condições",
     capa: galleryFor("residencial-le-ciel")[0],
     galeria: galleryFor("residencial-le-ciel"),
     destaques: [
@@ -248,7 +239,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Viva Alameda",
     cidade: "Londrina",
     bairro: "Sabará III",
-    precoLabel: "pelo Minha Casa, Minha Vida",
     capa: galleryFor("viva-alameda")[0],
     galeria: galleryFor("viva-alameda"),
     destaques: [
@@ -273,7 +263,6 @@ export const lancamentos: Lancamento[] = [
     categoria: "lancamento",
     nome: "Reserva Hause",
     cidade: "Umuarama",
-    precoLabel: "consulte plantas e condições",
     capa: galleryFor("reserva-hause")[0],
     galeria: galleryFor("reserva-hause"),
     destaques: [
@@ -298,8 +287,6 @@ export const lancamentos: Lancamento[] = [
     nome: "Residências Brisa do Vale",
     cidade: "Umuarama",
     bairro: "Parque Residencial Viena",
-    precoDesde: "R$ 204.900",
-    precoLabel: "entrada 100% parcelada",
     capa: galleryFor("brisa-do-vale")[0],
     galeria: galleryFor("brisa-do-vale"),
     destaques: [
@@ -328,8 +315,6 @@ export const lancamentos: Lancamento[] = [
     categoria: "lancamento",
     nome: "Casas em Cafezal do Sul",
     cidade: "Cafezal do Sul",
-    precoDesde: "R$ 190.000",
-    precoLabel: "48 m² de área construída",
     capa: galleryFor("cafezal-do-sul")[0],
     galeria: galleryFor("cafezal-do-sul"),
     video: "cafezal-do-sul-hero.mp4",
@@ -355,21 +340,15 @@ export const lancamentos: Lancamento[] = [
 // ---------------------------------------------------------------------------
 
 function loteamentoDestaques(l: { lotes: LoteIndividual[] }): string[] {
-  const valores = l.lotes.map((lo) => lo.valor)
-  const min = Math.min(...valores)
-  const max = Math.max(...valores)
-  return [
-    `${l.lotes.length} lote${l.lotes.length > 1 ? "s" : ""} disponíve${l.lotes.length > 1 ? "is" : "l"}`,
-    min === max ? `Valor: ${formatBRL(min)}` : `De ${formatBRL(min)} a ${formatBRL(max)}`,
-  ]
+  return [`${l.lotes.length} lote${l.lotes.length > 1 ? "s" : ""} disponíve${l.lotes.length > 1 ? "is" : "l"}`]
 }
 
-const loteamentosBase: Omit<LoteamentoImovel, "capa" | "galeria" | "destaques" | "precoDesde">[] = [
+const loteamentosBase: Omit<LoteamentoImovel, "capa" | "galeria" | "destaques">[] = [
   {
     slug: "jardim-bonanza-ii",
     categoria: "terreno",
     nome: "Jardim Bonanza II",
-    cidade: "Região de Umuarama",
+    cidade: "Xambrê",
     regiao: "Xambrê · PR",
     formaPagamento: "30% de entrada, restante em 60x corrigidas a 1,5% a.m.",
     mapaLink: "https://maps.app.goo.gl/87dh7VP3222WgnEF7",
@@ -451,7 +430,7 @@ const loteamentosBase: Omit<LoteamentoImovel, "capa" | "galeria" | "destaques" |
     slug: "parque-residencial-perola-ii",
     categoria: "terreno",
     nome: "Parque Residencial Pérola II",
-    cidade: "Região de Umuarama",
+    cidade: "Pérola",
     regiao: "Pérola · PR",
     formaPagamento: "30% de entrada, restante em 60x corrigidas a 1,5% a.m.",
     mapaLink: "https://maps.app.goo.gl/p9jAY5caz2sf7Zfg8",
@@ -564,7 +543,6 @@ export const chacarasImoveis: ChacaraImovel[] = [
     bairro: "Saída Mariluz, próx. Stang Distribuidora",
     area: "20.550 m²",
     condicao: "10% de entrada, restante em 120x corrigidas a 1% a.m.",
-    precoDesde: "R$ 320.000",
     capa: chacaraGenerica,
     galeria: [chacaraGenerica],
     destaques: ["Área de 20.550 m²", "Acesso pela Rod. PR-468", "10% de entrada, restante em 120x"],
@@ -579,10 +557,9 @@ export const chacarasImoveis: ChacaraImovel[] = [
     bairro: "Duas glebas disponíveis",
     area: "29.894 m² e 25.848 m²",
     condicao: "30% de entrada, restante em 60x corrigidas a 1,5% a.m.",
-    precoDesde: "R$ 450.000",
     capa: chacaraGenerica,
     galeria: [chacaraGenerica],
-    destaques: ["Duas glebas: R$ 800.000 (29.894 m²) e R$ 450.000 (25.848 m²)", "30% de entrada, restante em 60x"],
+    destaques: ["Duas glebas disponíveis: 29.894 m² e 25.848 m²", "30% de entrada, restante em 60x"],
     mapaLink: "https://maps.app.goo.gl/SrfTUjUqCcwdFSmz5",
     whatsappNumber: whatsappNumbers.umuarama,
   },

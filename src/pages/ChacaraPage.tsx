@@ -45,15 +45,9 @@ export function ChacaraPage() {
             {imovel.bairro}
           </div>
 
-          <div className="relative mt-8 grid grid-cols-2 gap-4 border-y border-cream-50/10 py-6">
-            <div>
-              <div className="text-xs text-cream-100/40 uppercase">Área</div>
-              <div className="font-display text-xl font-semibold tabular-nums text-gold-400">{imovel.area}</div>
-            </div>
-            <div>
-              <div className="text-xs text-cream-100/40 uppercase">A partir de</div>
-              <div className="font-display text-xl font-semibold tabular-nums text-gold-400">{imovel.precoDesde}</div>
-            </div>
+          <div className="relative mt-8 border-y border-cream-50/10 py-6">
+            <div className="text-xs text-cream-100/40 uppercase">Área</div>
+            <div className="font-display text-xl font-semibold tabular-nums text-gold-400">{imovel.area}</div>
           </div>
 
           <ul className="relative mt-6 space-y-2 text-sm text-cream-100/70">

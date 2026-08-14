@@ -29,18 +29,6 @@ export function LancamentoPage() {
             <MapPin className="h-4 w-4 text-gold-600" />
             {imovel.bairro ? `${imovel.bairro} · ${imovel.cidade}` : imovel.cidade}
           </div>
-
-          {(imovel.precoDesde || imovel.precoLabel) && (
-            <div className="mt-5">
-              {imovel.precoDesde && (
-                <>
-                  <span className="text-xs font-bold tracking-wide text-ink-950/50 uppercase">A partir de</span>
-                  <div className="font-display text-3xl font-bold text-gold-600 sm:text-4xl">{imovel.precoDesde}</div>
-                </>
-              )}
-              {imovel.precoLabel && <div className="mt-1 text-sm text-ink-950/60">{imovel.precoLabel}</div>}
-            </div>
-          )}
         </Reveal>
 
         <Reveal delay={0.05} className="mt-8">

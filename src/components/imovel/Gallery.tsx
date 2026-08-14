@@ -34,14 +34,14 @@ export function Gallery({ images, video, alt }: GalleryProps) {
 
   return (
     <div>
-      <div className="relative overflow-hidden rounded-3xl border border-ink-950/10 bg-ink-950/5">
-        <div className="aspect-[16/10] w-full sm:aspect-[16/9]">
+      <div className="flex justify-center">
+        <motion.div layout className="relative">
           {showingVideo ? (
             <video
               src={video}
               controls
               playsInline
-              className="h-full w-full object-cover"
+              className="max-h-[60vh] w-auto max-w-full rounded-3xl border border-ink-950/10 sm:max-h-[70vh]"
               aria-label={alt}
             />
           ) : (
@@ -54,22 +54,22 @@ export function Gallery({ images, video, alt }: GalleryProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="h-full w-full object-cover"
+                className="block max-h-[60vh] w-auto max-w-full rounded-3xl border border-ink-950/10 sm:max-h-[70vh]"
               />
             </AnimatePresence>
           )}
-        </div>
 
-        {!showingVideo && images.length > 0 && (
-          <button
-            type="button"
-            onClick={() => setLightboxOpen(true)}
-            aria-label="Ver em tela cheia"
-            className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-ink-950/60 text-cream-50 backdrop-blur-sm transition-colors hover:bg-ink-950/80"
-          >
-            <Expand className="h-4 w-4" />
-          </button>
-        )}
+          {!showingVideo && images.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              aria-label="Ver em tela cheia"
+              className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-ink-950/60 text-cream-50 backdrop-blur-sm transition-colors hover:bg-ink-950/80"
+            >
+              <Expand className="h-4 w-4" />
+            </button>
+          )}
+        </motion.div>
       </div>
 
       {(images.length > 1 || hasVideo) && (

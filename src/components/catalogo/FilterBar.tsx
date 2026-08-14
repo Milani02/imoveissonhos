@@ -20,7 +20,7 @@ const categorias: { value: Filtros["categoria"]; label: string }[] = [
   { value: "chacara", label: "Chácaras" },
 ]
 
-const cidades = ["todas", "Londrina", "Umuarama", "Cafezal do Sul", "Região de Umuarama"]
+const cidades = ["todas", "Londrina", "Umuarama", "Cafezal do Sul", "Xambrê", "Pérola", "Região de Umuarama"]
 
 const inputClass =
   "w-full rounded-xl border border-ink-950/12 bg-white px-3.5 py-2.5 text-sm text-ink-950 placeholder:text-ink-950/35 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 focus:outline-none"
