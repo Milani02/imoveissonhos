@@ -69,13 +69,11 @@ export function Catalogo() {
 
         {resultado.length > 0 ? (
           <>
-            <StaggerGroup className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.05} amount={0.05}>
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {resultado.map((imovel) => (
-                <StaggerItem key={`${imovel.categoria}-${imovel.slug}`}>
-                  <ImovelCard imovel={imovel} />
-                </StaggerItem>
+                <ImovelCard key={`${imovel.categoria}-${imovel.slug}`} imovel={imovel} />
               ))}
-            </StaggerGroup>
+            </div>
             <p className="mt-10 text-center text-xs text-ink-950/40">
               Imagens meramente ilustrativas. Terrenos e chácaras usam foto genérica de referência — consulte a localização exata pelo link do mapa.
             </p>

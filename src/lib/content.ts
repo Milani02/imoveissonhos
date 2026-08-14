@@ -29,8 +29,6 @@ export const siteMeta = {
 export const nav = [
   { label: "Home", href: "/" },
   { label: "Imóveis", href: "/imoveis" },
-  { label: "Lançamentos", href: "/imoveis?categoria=lancamento" },
-  { label: "Terrenos", href: "/imoveis?categoria=terreno" },
   { label: "Sobre", href: "/sobre" },
 ]
 

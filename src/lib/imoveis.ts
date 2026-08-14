@@ -5,6 +5,8 @@
 import { whatsappNumbers, waLink } from "./content"
 import terrenoGenerico from "../assets/generico/terreno-01.webp"
 import chacaraGenerica from "../assets/generico/chacara-01.webp"
+import terrenoCapa from "../assets/capas/terreno-capa.webp"
+import chacaraCapa from "../assets/capas/chacara-capa.webp"
 
 export type Categoria = "lancamento" | "terreno" | "chacara"
 
@@ -71,6 +73,15 @@ function galleryFor(slug: string): string[] {
     .map(([, mod]) => mod.default)
 }
 
+// -- miniatura leve por slug, usada nos cards do catálogo (a foto cheia de 1920px
+// deixava o carregamento do catálogo lento) --
+const capaModules = import.meta.glob<{ default: string }>("../assets/capas/*.webp", { eager: true })
+
+function capaFor(slug: string): string {
+  const mod = Object.entries(capaModules).find(([filePath]) => filePath.endsWith(`/${slug}-capa.webp`))
+  return mod ? mod[1].default : galleryFor(slug)[0]
+}
+
 function numeroPorCidade(cidade: string): string {
   return cidade.includes("Umuarama") ? whatsappNumbers.umuarama : whatsappNumbers.geral
 }
@@ -96,7 +107,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Floriatto — Morada dos Ventos",
     cidade: "Londrina",
     bairro: "Califórnia",
-    capa: galleryFor("floriatto-morada-dos-ventos")[0],
+    capa: capaFor("floriatto-morada-dos-ventos"),
     galeria: galleryFor("floriatto-morada-dos-ventos"),
     destaques: [
       "2 dormitórios, plantas de 40,45 m² a 40,70 m²",
@@ -123,7 +134,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Granví",
     cidade: "Londrina",
     bairro: "Portal Itamaracá 2",
-    capa: galleryFor("granvi")[0],
+    capa: capaFor("granvi"),
     galeria: galleryFor("granvi"),
     destaques: [
       "2 dormitórios, plantas de 48,64 m² a 50,11 m²",
@@ -147,7 +158,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial La Roche",
     cidade: "Londrina",
     bairro: "Zona Leste",
-    capa: galleryFor("residencial-la-roche")[0],
+    capa: capaFor("residencial-la-roche"),
     galeria: galleryFor("residencial-la-roche"),
     destaques: [
       "2 quartos, apartamentos a partir de 45 m²",
@@ -171,7 +182,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Lake Dalí",
     cidade: "Londrina",
     bairro: "Acquaville",
-    capa: galleryFor("residencial-lake-dali")[0],
+    capa: capaFor("residencial-lake-dali"),
     galeria: galleryFor("residencial-lake-dali"),
     destaques: [
       "2 quartos, plantas a partir de 41 m²",
@@ -193,7 +204,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Lancelot",
     cidade: "Londrina",
     bairro: "Zona Norte",
-    capa: galleryFor("residencial-lancelot")[0],
+    capa: capaFor("residencial-lancelot"),
     galeria: galleryFor("residencial-lancelot"),
     destaques: [
       "2 quartos, plantas a partir de 46 m²",
@@ -216,7 +227,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Le Ciel",
     cidade: "Londrina",
     bairro: "Parque Jamaica",
-    capa: galleryFor("residencial-le-ciel")[0],
+    capa: capaFor("residencial-le-ciel"),
     galeria: galleryFor("residencial-le-ciel"),
     destaques: [
       "2 quartos, a partir de 43 m²",
@@ -239,7 +250,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Residencial Viva Alameda",
     cidade: "Londrina",
     bairro: "Sabará III",
-    capa: galleryFor("viva-alameda")[0],
+    capa: capaFor("viva-alameda"),
     galeria: galleryFor("viva-alameda"),
     destaques: [
       "2 quartos, plantas de 47,79 m² e 48,52 m²",
@@ -263,7 +274,7 @@ export const lancamentos: Lancamento[] = [
     categoria: "lancamento",
     nome: "Reserva Hause",
     cidade: "Umuarama",
-    capa: galleryFor("reserva-hause")[0],
+    capa: capaFor("reserva-hause"),
     galeria: galleryFor("reserva-hause"),
     destaques: [
       "Rooftop exclusivo com Sky Bar e Sky Fitness",
@@ -287,7 +298,7 @@ export const lancamentos: Lancamento[] = [
     nome: "Residências Brisa do Vale",
     cidade: "Umuarama",
     bairro: "Parque Residencial Viena",
-    capa: galleryFor("brisa-do-vale")[0],
+    capa: capaFor("brisa-do-vale"),
     galeria: galleryFor("brisa-do-vale"),
     destaques: [
       "Financiamento pelo programa Minha Casa Minha Vida",
@@ -315,7 +326,7 @@ export const lancamentos: Lancamento[] = [
     categoria: "lancamento",
     nome: "Casas em Cafezal do Sul",
     cidade: "Cafezal do Sul",
-    capa: galleryFor("cafezal-do-sul")[0],
+    capa: capaFor("cafezal-do-sul"),
     galeria: galleryFor("cafezal-do-sul"),
     video: "cafezal-do-sul-hero.mp4",
     destaques: [
@@ -525,7 +536,7 @@ const loteamentosBase: Omit<LoteamentoImovel, "capa" | "galeria" | "destaques">[
 
 export const loteamentosImoveis: LoteamentoImovel[] = loteamentosBase.map((l) => ({
   ...l,
-  capa: terrenoGenerico,
+  capa: terrenoCapa,
   galeria: [terrenoGenerico],
   destaques: loteamentoDestaques(l),
 }))
@@ -543,7 +554,7 @@ export const chacarasImoveis: ChacaraImovel[] = [
     bairro: "Saída Mariluz, próx. Stang Distribuidora",
     area: "20.550 m²",
     condicao: "10% de entrada, restante em 120x corrigidas a 1% a.m.",
-    capa: chacaraGenerica,
+    capa: chacaraCapa,
     galeria: [chacaraGenerica],
     destaques: ["Área de 20.550 m²", "Acesso pela Rod. PR-468", "10% de entrada, restante em 120x"],
     mapaLink: "https://maps.app.goo.gl/mCaj5e9wsjQezyVq8",
@@ -557,7 +568,7 @@ export const chacarasImoveis: ChacaraImovel[] = [
     bairro: "Duas glebas disponíveis",
     area: "29.894 m² e 25.848 m²",
     condicao: "30% de entrada, restante em 60x corrigidas a 1,5% a.m.",
-    capa: chacaraGenerica,
+    capa: chacaraCapa,
     galeria: [chacaraGenerica],
     destaques: ["Duas glebas disponíveis: 29.894 m² e 25.848 m²", "30% de entrada, restante em 60x"],
     mapaLink: "https://maps.app.goo.gl/SrfTUjUqCcwdFSmz5",

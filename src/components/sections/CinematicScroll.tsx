@@ -37,7 +37,10 @@ export function CinematicScroll() {
     if (prefersReduced) return
 
     const ctx = gsap.context(() => {
-      const distance = () => window.innerHeight * 2.2
+      const distance = () => {
+        const isMobile = window.matchMedia("(max-width: 639px)").matches
+        return window.innerHeight * (isMobile ? 1.2 : 2.2)
+      }
 
       const tl = gsap.timeline({
         scrollTrigger: {
