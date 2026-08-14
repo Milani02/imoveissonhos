@@ -42,7 +42,7 @@ export function TerrenoPage() {
           <Reveal delay={0.03} className="mt-8">
             <Gallery images={imovel.galeria} alt={imovel.nome} />
             <p className="mt-3 text-xs text-cream-100/40">
-              Foto ilustrativa do padrão de loteamento — não é uma foto do lote específico. Veja a localização exata pelo link do mapa.
+              Imagem meramente ilustrativa — não é uma foto real do loteamento ou do lote específico. Veja a localização exata pelo link do mapa.
             </p>
           </Reveal>
         )}

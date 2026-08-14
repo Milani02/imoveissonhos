@@ -29,7 +29,7 @@ export function ChacaraPage() {
           <Reveal delay={0.03} className="mt-8">
             <Gallery images={imovel.galeria} alt={imovel.nome} />
             <p className="mt-3 text-xs text-cream-100/40">
-              Foto ilustrativa de referência — não é uma foto da chácara específica. Veja a localização exata pelo link do mapa.
+              Imagem meramente ilustrativa — não é uma foto real da chácara. Veja a localização exata pelo link do mapa.
             </p>
           </Reveal>
         )}

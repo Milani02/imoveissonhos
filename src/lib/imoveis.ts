@@ -82,6 +82,22 @@ function capaFor(slug: string): string {
   return mod ? mod[1].default : galleryFor(slug)[0]
 }
 
+// -- foto própria por loteamento, quando existir (a maioria ainda usa a foto
+// genérica de referência em src/assets/generico/) --
+const terrenoImagemModules = import.meta.glob<{ default: string }>("../assets/empreendimentos-terrenos/*.webp", {
+  eager: true,
+})
+
+function terrenoImagemFor(slug: string): string {
+  const mod = Object.entries(terrenoImagemModules).find(([filePath]) => filePath.endsWith(`/${slug}.webp`))
+  return mod ? mod[1].default : terrenoGenerico
+}
+
+function terrenoCapaFor(slug: string): string {
+  const mod = Object.entries(capaModules).find(([filePath]) => filePath.endsWith(`/${slug}-capa.webp`))
+  return mod ? mod[1].default : terrenoCapa
+}
+
 function numeroPorCidade(cidade: string): string {
   return cidade.includes("Umuarama") ? whatsappNumbers.umuarama : whatsappNumbers.geral
 }
@@ -536,8 +552,8 @@ const loteamentosBase: Omit<LoteamentoImovel, "capa" | "galeria" | "destaques">[
 
 export const loteamentosImoveis: LoteamentoImovel[] = loteamentosBase.map((l) => ({
   ...l,
-  capa: terrenoCapa,
-  galeria: [terrenoGenerico],
+  capa: terrenoCapaFor(l.slug),
+  galeria: [terrenoImagemFor(l.slug)],
   destaques: loteamentoDestaques(l),
 }))
 
@@ -564,7 +580,7 @@ export const chacarasImoveis: ChacaraImovel[] = [
     slug: "chacara-cruzeiro",
     categoria: "chacara",
     nome: "Chácara Cruzeiro",
-    cidade: "Região de Umuarama",
+    cidade: "Cruzeiro do Oeste",
     bairro: "Duas glebas disponíveis",
     area: "29.894 m² e 25.848 m²",
     condicao: "30% de entrada, restante em 60x corrigidas a 1,5% a.m.",

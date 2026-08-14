@@ -7,6 +7,7 @@ import { Button } from "../components/ui/Button"
 import { WhatsAppIcon } from "../components/ui/WhatsAppIcon"
 import { FilterBar, filtrosVazios, type Filtros } from "../components/catalogo/FilterBar"
 import { ImovelCard } from "../components/catalogo/ImovelCard"
+import { AreasIncorporacao } from "../components/sections/AreasIncorporacao"
 import { imoveis, lancamentos, loteamentosImoveis } from "../lib/imoveis"
 import { waLink, waMessages } from "../lib/content"
 
@@ -36,6 +37,7 @@ export function Catalogo() {
   const totalLotes = loteamentosImoveis.reduce((acc, l) => acc + l.lotes.length, 0)
 
   return (
+    <>
     <section className="bg-cream-50 px-5 py-28 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <Reveal className="max-w-2xl">
@@ -75,7 +77,7 @@ export function Catalogo() {
               ))}
             </div>
             <p className="mt-10 text-center text-xs text-ink-950/40">
-              Imagens meramente ilustrativas. Terrenos e chácaras usam foto genérica de referência — consulte a localização exata pelo link do mapa.
+              Imagens meramente ilustrativas, não representam o imóvel real — consulte a localização exata pelo link do mapa.
             </p>
           </>
         ) : (
@@ -103,5 +105,7 @@ export function Catalogo() {
         )}
       </div>
     </section>
+    <AreasIncorporacao />
+    </>
   )
 }
