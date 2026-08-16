@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Layout } from "./components/Layout"
 import { Home } from "./pages/Home"
+import { NotFound } from "./components/NotFound"
 
 const Catalogo = lazy(() => import("./pages/Catalogo").then((m) => ({ default: m.Catalogo })))
 const LancamentoPage = lazy(() => import("./pages/LancamentoPage").then((m) => ({ default: m.LancamentoPage })))
@@ -59,6 +60,7 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

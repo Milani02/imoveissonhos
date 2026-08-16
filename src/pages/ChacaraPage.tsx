@@ -27,7 +27,7 @@ export function ChacaraPage() {
 
         {imovel.galeria.length > 0 && (
           <Reveal delay={0.03} className="mt-8">
-            <Gallery images={imovel.galeria} alt={imovel.nome} />
+            <Gallery images={imovel.galeria} alt={imovel.nome} illustrative />
             <p className="mt-3 text-xs text-cream-100/40">
               Imagem meramente ilustrativa — não é uma foto real da chácara. Veja a localização exata pelo link do mapa.
             </p>

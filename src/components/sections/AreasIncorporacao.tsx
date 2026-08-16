@@ -13,8 +13,11 @@ const statusLabel: Record<AreaIncorporacao["status"], string> = {
 function AreaCard({ item }: { item: AreaIncorporacao }) {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-gold-500/20 bg-gradient-to-br from-ink-900 to-ink-950">
-      <div className="aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <img src={imagemIncorporacao(item.slug)} alt="" className="h-full w-full object-cover" loading="lazy" />
+        <span className="absolute top-2.5 left-2.5 rounded-full bg-ink-950/70 px-2.5 py-1 text-[0.6rem] font-bold tracking-[0.08em] text-cream-50 uppercase backdrop-blur-sm">
+          Imagem ilustrativa
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-6">

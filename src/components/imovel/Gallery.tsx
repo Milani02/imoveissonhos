@@ -6,9 +6,10 @@ interface GalleryProps {
   images: string[]
   video?: string
   alt: string
+  illustrative?: boolean
 }
 
-export function Gallery({ images, video, alt }: GalleryProps) {
+export function Gallery({ images, video, alt, illustrative = false }: GalleryProps) {
   const [active, setActive] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const shouldReduceMotion = useReducedMotion()
@@ -57,6 +58,12 @@ export function Gallery({ images, video, alt }: GalleryProps) {
                 className="block max-h-[60vh] w-auto max-w-full rounded-3xl border border-ink-950/10 sm:max-h-[70vh]"
               />
             </AnimatePresence>
+          )}
+
+          {!showingVideo && illustrative && (
+            <span className="absolute top-4 left-4 rounded-full bg-ink-950/70 px-3 py-1.5 text-xs font-bold tracking-[0.08em] text-cream-50 uppercase backdrop-blur-sm">
+              Imagem ilustrativa
+            </span>
           )}
 
           {!showingVideo && images.length > 0 && (
@@ -155,6 +162,12 @@ export function Gallery({ images, video, alt }: GalleryProps) {
               transition={{ duration: 0.25 }}
               className="max-h-full max-w-full rounded-lg object-contain"
             />
+
+            {illustrative && (
+              <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-ink-950/70 px-3 py-1.5 text-xs font-bold tracking-[0.08em] text-cream-50 uppercase backdrop-blur-sm">
+                Imagem ilustrativa
+              </span>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

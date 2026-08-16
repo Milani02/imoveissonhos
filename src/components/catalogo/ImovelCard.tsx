@@ -17,6 +17,7 @@ function rotaFor(imovel: Imovel): string {
 
 export function ImovelCard({ imovel }: { imovel: Imovel }) {
   const temFoto = Boolean(imovel.capa)
+  const ilustrativa = imovel.categoria !== "lancamento"
 
   return (
     <Link
@@ -24,13 +25,18 @@ export function ImovelCard({ imovel }: { imovel: Imovel }) {
       className="group block overflow-hidden rounded-2xl border border-ink-950/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink-950/10"
     >
       {temFoto ? (
-        <div className="aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden">
           <img
             src={imovel.capa}
             alt={imovel.nome}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          {ilustrativa && (
+            <span className="absolute top-2.5 left-2.5 rounded-full bg-ink-950/70 px-2.5 py-1 text-[0.6rem] font-bold tracking-[0.08em] text-cream-50 uppercase backdrop-blur-sm">
+              Imagem ilustrativa
+            </span>
+          )}
         </div>
       ) : (
         <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-ink-900 to-ink-950">
