@@ -35,13 +35,11 @@ Fotos reais do cliente (lançamentos) e imagens geradas por IA (terrenos/chácar
 
 `src/lib/imoveis.ts` usa `import.meta.glob` pra resolver essas imagens por slug automaticamente (`capaFor`, `terrenoImagemFor`, `terrenoCapaFor`, etc.) — sempre com fallback pro genérico (`terreno-01.webp` / `chacara-01.webp`) quando não existe uma foto específica pro slug. Isso significa que **dá pra ir gerando fotos específicas aos poucos, sem quebrar nada** — só rodar o script de processamento de novo depois de adicionar o `.jpg` cru em `scripts/gemini-raw/` e mapear no array `mapping` do script.
 
-### Status da cobertura de fotos (terrenos/chácaras) — pendência conhecida
+### Status da cobertura de fotos (terrenos/chácaras)
 
-Dos 11 loteamentos, **5 já têm foto própria**: `jardim-bonanza-ii`, `parque-residencial-viena`, `parque-residencial-viena-ii`, `parque-residencial-viena-iii`, `parque-metropolitano`. Os outros 6 (`parque-residencial-perola-ii`, `jardim-nova-america`, `pq-firenze`, `parque-residencial-roma`, `jardim-tangara`, `paysage-unique-condominio`) ainda usam a foto genérica compartilhada.
+Cobertura completa: os 11 loteamentos e as 2 chácaras têm foto própria (a genérica compartilhada continua como fallback do sistema, mas não está mais em uso por nenhum item). As chácaras usam as mesmas funções de lookup por slug que os terrenos (`chacaraImagemFor`/`chacaraCapaFor` em `src/lib/imoveis.ts`, análogas a `terrenoImagemFor`/`terrenoCapaFor` — antes eram hardcoded pro genérico).
 
-Das 2 chácaras (`chacara-rod-henio-romagnoli`, `chacara-cruzeiro`), **nenhuma tem foto própria ainda** — ambas na genérica.
-
-Pra completar: gerar as imagens (ver seção "Gerar imagens novas" abaixo), salvar em `scripts/gemini-raw/<slug>.jpg`, adicionar a entrada no `mapping` de `scripts/process-terreno-images.mjs`, rodar o script, `npm run build`.
+Pra trocar/adicionar uma foto: gerar a imagem (ver seção "Gerar imagens novas" abaixo), salvar em `scripts/gemini-raw/<slug>.jpg`, adicionar a entrada no `mapping` de `scripts/process-terreno-images.mjs`, rodar o script, `npm run build`. Nota: `scripts/gemini-raw/` é gitignored, então numa sessão/máquina nova o `mapping` do script vai ter entradas cujo `.jpg` bruto não existe mais localmente (já foi processado antes) — rodar o script direto vai falhar em "Input file is missing"; nesse caso, comente temporariamente as entradas sem raw correspondente, rode só as novas, e restaure o mapping completo depois (ele serve de documentação/histórico de quais slugs já têm processamento definido).
 
 ## Gerar imagens novas (fluxo manual via Gemini)
 

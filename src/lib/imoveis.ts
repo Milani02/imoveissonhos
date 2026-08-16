@@ -98,6 +98,18 @@ function terrenoCapaFor(slug: string): string {
   return mod ? mod[1].default : terrenoCapa
 }
 
+// -- mesma lógica acima, aplicada às chácaras (compartilham as pastas
+// empreendimentos-terrenos/ e capas/, caem no genérico de chácara) --
+function chacaraImagemFor(slug: string): string {
+  const mod = Object.entries(terrenoImagemModules).find(([filePath]) => filePath.endsWith(`/${slug}.webp`))
+  return mod ? mod[1].default : chacaraGenerica
+}
+
+function chacaraCapaFor(slug: string): string {
+  const mod = Object.entries(capaModules).find(([filePath]) => filePath.endsWith(`/${slug}-capa.webp`))
+  return mod ? mod[1].default : chacaraCapa
+}
+
 function numeroPorCidade(cidade: string): string {
   return cidade.includes("Umuarama") ? whatsappNumbers.umuarama : whatsappNumbers.geral
 }
@@ -344,7 +356,6 @@ export const lancamentos: Lancamento[] = [
     cidade: "Cafezal do Sul",
     capa: capaFor("cafezal-do-sul"),
     galeria: galleryFor("cafezal-do-sul"),
-    video: "cafezal-do-sul-hero.mp4",
     destaques: [
       "2 quartos, sala, cozinha e BWC social",
       "Lavanderia coberta",
@@ -570,8 +581,8 @@ export const chacarasImoveis: ChacaraImovel[] = [
     bairro: "Saída Mariluz, próx. Stang Distribuidora",
     area: "20.550 m²",
     condicao: "10% de entrada, restante em 120x corrigidas a 1% a.m.",
-    capa: chacaraCapa,
-    galeria: [chacaraGenerica],
+    capa: chacaraCapaFor("chacara-rod-henio-romagnoli"),
+    galeria: [chacaraImagemFor("chacara-rod-henio-romagnoli")],
     destaques: ["Área de 20.550 m²", "Acesso pela Rod. PR-468", "10% de entrada, restante em 120x"],
     mapaLink: "https://maps.app.goo.gl/mCaj5e9wsjQezyVq8",
     whatsappNumber: whatsappNumbers.umuarama,
@@ -584,8 +595,8 @@ export const chacarasImoveis: ChacaraImovel[] = [
     bairro: "Duas glebas disponíveis",
     area: "29.894 m² e 25.848 m²",
     condicao: "30% de entrada, restante em 60x corrigidas a 1,5% a.m.",
-    capa: chacaraCapa,
-    galeria: [chacaraGenerica],
+    capa: chacaraCapaFor("chacara-cruzeiro"),
+    galeria: [chacaraImagemFor("chacara-cruzeiro")],
     destaques: ["Duas glebas disponíveis: 29.894 m² e 25.848 m²", "30% de entrada, restante em 60x"],
     mapaLink: "https://maps.app.goo.gl/SrfTUjUqCcwdFSmz5",
     whatsappNumber: whatsappNumbers.umuarama,

@@ -31,6 +31,14 @@ const mapping = [
   ["parque-residencial-viena-iii.jpg", "parque-residencial-viena-iii"],
   ["parque-residencial-viena.jpg", "parque-residencial-viena"],
   ["parque-metropolitano.jpg", "parque-metropolitano"],
+  ["parque-residencial-perola-ii.jpg", "parque-residencial-perola-ii"],
+  ["jardim-nova-america.jpg", "jardim-nova-america"],
+  ["pq-firenze.jpg", "pq-firenze"],
+  ["parque-residencial-roma.jpg", "parque-residencial-roma"],
+  ["jardim-tangara.jpg", "jardim-tangara"],
+  ["paysage-unique-condominio.jpg", "paysage-unique-condominio"],
+  ["chacara-rod-henio-romagnoli.jpg", "chacara-rod-henio-romagnoli"],
+  ["chacara-cruzeiro.jpg", "chacara-cruzeiro"],
 ]
 
 for (const [file, slug] of mapping) await toWebp(file, slug)
