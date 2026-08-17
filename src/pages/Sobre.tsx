@@ -4,6 +4,7 @@ import { Button } from "../components/ui/Button"
 import { WhatsAppIcon } from "../components/ui/WhatsAppIcon"
 import { TestimonialCard } from "../components/ui/TestimonialCard"
 import { Comparison } from "../components/sections/Comparison"
+import { TiposFinanciamento } from "../components/sections/TiposFinanciamento"
 import { Journey } from "../components/sections/Journey"
 import { FiveReasons } from "../components/sections/FiveReasons"
 import { sobre, waLink, waMessages, depoimentosLista } from "../lib/content"
@@ -58,6 +59,7 @@ export function Sobre() {
       </section>
 
       <Comparison />
+      <TiposFinanciamento />
       <Journey />
       <FiveReasons />
     </>

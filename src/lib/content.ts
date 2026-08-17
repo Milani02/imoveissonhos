@@ -19,6 +19,7 @@ export const waMessages = {
   buscarImovel: "Olá! Ainda não encontrei o imóvel que estou procurando. Podem me ajudar a buscar o imóvel ideal pra mim?",
   consultoria: "Olá! Quero receber uma consultoria completa de financiamento com a Imóveis dos Sonhos.",
   trabalheConosco: "Olá! Tenho interesse em trabalhar na Imóveis dos Sonhos. Como funciona o processo seletivo?",
+  tiposFinanciamento: "Olá! Tenho dúvidas sobre os tipos de financiamento e queria entender qual se encaixa melhor pra mim.",
 }
 
 export const siteMeta = {
@@ -143,6 +144,41 @@ export const comparison = {
     note: "Nosso foco principal — é aqui que estão as melhores condições",
   },
   cta: "Falar com um especialista",
+}
+
+export const tiposFinanciamento = {
+  eyebrow: "Como funciona cada caminho",
+  heading: "3 formas de conquistar seu imóvel",
+  body: "Cada tipo de aquisição tem regras, prazos e condições diferentes. Entenda o que muda em cada um antes de decidir.",
+  tipos: [
+    {
+      icon: "Building2",
+      titulo: "Lançamento (empreendimento na planta)",
+      oQueE:
+        "Você compra a unidade ainda durante a construção, direto com a construtora — geralmente com as condições mais leves porque entra antes da obra terminar.",
+      comoFunciona:
+        "Entrada 100% parcelada e financiamento pelo Programa Minha Casa Minha Vida (quando o empreendimento se enquadra), com o restante quitado até a entrega das chaves.",
+      idealPara: "Quem quer uma entrada mais leve e pode aguardar o prazo de obra.",
+    },
+    {
+      icon: "LandPlot",
+      titulo: "Aquisição de terreno + construção",
+      oQueE:
+        "Você compra o terreno primeiro e depois constrói do seu jeito, no seu tempo — com o projeto que sempre imaginou.",
+      comoFunciona:
+        "O lote é adquirido com entrada + parcelas corrigidas direto com o loteador, sem burocracia bancária. Depois, a construção pode ser financiada à parte ou feita com recursos próprios, na velocidade que você definir.",
+      idealPara: "Quem já tem (ou quer) um terreno e prefere ter controle total do projeto e do ritmo da obra.",
+    },
+    {
+      icon: "KeyRound",
+      titulo: "Imóvel pronto",
+      oQueE: "Você compra uma casa ou apartamento já construído — pronto pra mudar assim que a documentação for concluída.",
+      comoFunciona:
+        "Financiamento bancário tradicional ou pagamento à vista, com entrada e parcelas definidas conforme sua análise de crédito.",
+      idealPara: "Quem não quer esperar obra e já sabe o bairro e o imóvel que procura.",
+    },
+  ],
+  cta: "Tirar minhas dúvidas",
 }
 
 export const journey = {
