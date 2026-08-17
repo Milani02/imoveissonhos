@@ -16,6 +16,9 @@ export const waMessages = {
   hero: "Olá! Quero sair do aluguel e simular meu financiamento com a Imóveis dos Sonhos.",
   comparison: "Olá! Não sei se compro imóvel pronto ou na planta. Podem me ajudar a decidir?",
   finalCta: "Olá! Vim pelo site e quero falar com um especialista agora.",
+  buscarImovel: "Olá! Ainda não encontrei o imóvel que estou procurando. Podem me ajudar a buscar o imóvel ideal pra mim?",
+  consultoria: "Olá! Quero receber uma consultoria completa de financiamento com a Imóveis dos Sonhos.",
+  trabalheConosco: "Olá! Tenho interesse em trabalhar na Imóveis dos Sonhos. Como funciona o processo seletivo?",
 }
 
 export const siteMeta = {
@@ -74,6 +77,37 @@ export const diferenciais = {
       icon: "HeartHandshake",
       title: "Acompanhamento Completo",
       description: "Após o online, encaminhamos você pra um atendimento presencial junto à construtora responsável.",
+    },
+  ],
+}
+
+export const servicos = {
+  eyebrow: "Como podemos ajudar",
+  heading: "Três formas de dar o próximo passo",
+  cards: [
+    {
+      tag: "Não achou?",
+      title: "Buscamos seu Imóvel!",
+      description:
+        "Ainda não achou o imóvel que estava procurando? Conte pra gente como é o imóvel dos seus sonhos e a equipe Imóveis dos Sonhos encontra rapidamente pra você.",
+      cta: "Encontre meu imóvel",
+      message: "buscarImovel" as const,
+    },
+    {
+      tag: "Quer financiar?",
+      title: "Receba sua Consultoria!",
+      description:
+        "Não é apenas um simulador de financiamento — é uma consultoria one-to-one completa pra facilitar ainda mais a sua vida e te ajudar a realizar o seu sonho.",
+      cta: "Iniciar consultoria",
+      message: "consultoria" as const,
+    },
+    {
+      tag: "Quer fazer parte do time?",
+      title: "Trabalhe Conosco!",
+      description:
+        "Buscamos pessoas apaixonadas por realizar sonhos. Envie seu contato pra gente e venha fazer parte do time Imóveis dos Sonhos.",
+      cta: "Quero trabalhar com vocês",
+      message: "trabalheConosco" as const,
     },
   ],
 }
