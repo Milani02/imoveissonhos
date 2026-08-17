@@ -371,6 +371,29 @@ export const lancamentos: Lancamento[] = [
       { label: "Financiamento", value: "Minha Casa, Minha Vida" },
     ],
   },
+  {
+    slug: "residencial-nova-america",
+    categoria: "lancamento",
+    nome: "Residencial Nova América",
+    cidade: "Umuarama",
+    capa: capaFor("residencial-nova-america"),
+    galeria: galleryFor("residencial-nova-america"),
+    destaques: [
+      "4 modelos de casas, de 2 a 3 dormitórios",
+      "A partir de 44,54 m²",
+      "Subsídio de até R$ 80 mil",
+      "Entrada parcelada em até 24x",
+      "Financiamento pelo Minha Casa, Minha Vida",
+    ],
+    whatsappNumber: numeroPorCidade("Umuarama"),
+    fichaTecnica: [
+      { label: "Área construída", value: "A partir de 44,54 m²" },
+      { label: "Tipologia", value: "4 modelos — 2 ou 3 dormitórios" },
+      { label: "Subsídio", value: "Até R$ 80 mil" },
+      { label: "Entrada", value: "Parcelada em até 24x" },
+      { label: "Financiamento", value: "Minha Casa, Minha Vida" },
+    ],
+  },
 ]
 
 // ---------------------------------------------------------------------------
