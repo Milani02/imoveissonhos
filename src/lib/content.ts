@@ -207,8 +207,8 @@ export const sobre = {
     "Hoje atendemos Londrina, Umuarama e Cafezal do Sul, sempre com a mesma proposta: entrada 100% parcelada e acompanhamento pessoal em cada etapa da conquista do seu imóvel.",
   ],
   contatos: [
-    { cidade: "Londrina e Cafezal do Sul", numero: "(43) 99183-9425" },
-    { cidade: "Umuarama", numero: "(44) 99159-4260" },
+    { cidade: "Londrina", numero: "(43) 99183-9425" },
+    { cidade: "Umuarama e regiões", numero: "(44) 99159-4260" },
   ],
 }
 
