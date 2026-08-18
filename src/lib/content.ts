@@ -17,7 +17,6 @@ export const waMessages = {
   comparison: "Olá! Não sei se compro imóvel pronto ou na planta. Podem me ajudar a decidir?",
   finalCta: "Olá! Vim pelo site e quero falar com um especialista agora.",
   buscarImovel: "Olá! Ainda não encontrei o imóvel que estou procurando. Podem me ajudar a buscar o imóvel ideal pra mim?",
-  consultoria: "Olá! Quero receber uma consultoria completa de financiamento com a Imóveis dos Sonhos.",
   trabalheConosco: "Olá! Tenho interesse em trabalhar na Imóveis dos Sonhos. Como funciona o processo seletivo?",
   tiposFinanciamento: "Olá! Tenho dúvidas sobre os tipos de financiamento e queria entender qual se encaixa melhor pra mim.",
 }
@@ -82,7 +81,11 @@ export const diferenciais = {
   ],
 }
 
-export const servicos = {
+export type ServicoCard =
+  | { tag: string; title: string; description: string; cta: string; message: keyof typeof waMessages; formulario?: false }
+  | { tag: string; title: string; description: string; cta: string; formulario: true }
+
+export const servicos: { eyebrow: string; heading: string; cards: ServicoCard[] } = {
   eyebrow: "Como podemos ajudar",
   heading: "Qual é o seu próximo passo?",
   cards: [
@@ -92,17 +95,33 @@ export const servicos = {
       description:
         "Ainda não achou o imóvel que estava procurando? Conte pra gente como é o imóvel dos seus sonhos e a equipe Imóveis dos Sonhos encontra rapidamente pra você.",
       cta: "Encontre meu imóvel",
-      message: "buscarImovel" as const,
+      message: "buscarImovel",
     },
     {
       tag: "Quer financiar?",
-      title: "Receba sua Consultoria!",
+      title: "Faça uma Simulação!",
       description:
-        "Não é apenas um simulador de financiamento — é uma consultoria one-to-one completa pra facilitar ainda mais a sua vida e te ajudar a realizar o seu sonho.",
-      cta: "Iniciar consultoria",
-      message: "consultoria" as const,
+        "Responda algumas perguntas rápidas sobre sua renda, entrada e o imóvel que você procura, e receba uma simulação personalizada direto no seu WhatsApp.",
+      cta: "Simular financiamento",
+      formulario: true,
     },
   ],
+}
+
+export const simulacaoFinanciamento = {
+  titulo: "Simulação de Financiamento 🏡",
+  subtitulo: "Responda as perguntas abaixo e enviamos direto pro WhatsApp da nossa equipe.",
+  ctaEnviar: "Enviar simulação pelo WhatsApp",
+  estadosCivis: ["Solteiro(a)", "Casado(a)", "Outro"],
+  simOuNao: ["Sim", "Não"],
+  faixasValor: [
+    "Até R$ 150 mil",
+    "R$ 150 mil a R$ 250 mil",
+    "R$ 250 mil a R$ 400 mil",
+    "Acima de R$ 400 mil",
+    "Ainda não sei",
+  ],
+  cidades: ["Londrina", "Umuarama", "Cafezal do Sul", "Xambrê", "Pérola", "Cruzeiro do Oeste", "Outra cidade"],
 }
 
 export const comparison = {
