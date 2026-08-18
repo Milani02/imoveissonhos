@@ -1,10 +1,7 @@
 import { useState, type FormEvent } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { X } from "lucide-react"
-import { simulacaoFinanciamento, waLink } from "../../lib/content"
-
-// TODO: número de teste — trocar para o WhatsApp de produção antes de publicar
-const WHATSAPP_TESTE_SIMULACAO = "5543991327878"
+import { simulacaoFinanciamento, waLink, whatsappNumbers } from "../../lib/content"
 
 interface FormState {
   renda: string
@@ -83,7 +80,7 @@ export function SimulacaoFinanciamentoModal({ open, onClose }: { open: boolean; 
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    window.open(waLink(buildMessage(form), WHATSAPP_TESTE_SIMULACAO), "_blank", "noopener,noreferrer")
+    window.open(waLink(buildMessage(form), whatsappNumbers.geral), "_blank", "noopener,noreferrer")
     setForm(initialState)
     onClose()
   }
