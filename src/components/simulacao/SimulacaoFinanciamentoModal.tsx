@@ -4,6 +4,7 @@ import { X } from "lucide-react"
 import { simulacaoFinanciamento, waLink, whatsappNumbers } from "../../lib/content"
 
 interface FormState {
+  nome: string
   renda: string
   estadoCivil: string
   fgts: string
@@ -15,6 +16,7 @@ interface FormState {
 }
 
 const initialState: FormState = {
+  nome: "",
   renda: "",
   estadoCivil: "",
   fgts: "",
@@ -43,7 +45,7 @@ const EMOJI = {
 } as const
 
 function buildMessage(f: FormState): string {
-  return `Olá! ${EMOJI.wave} Quero fazer uma *simulação de financiamento* ${EMOJI.house}
+  return `Olá! ${EMOJI.wave} Meu nome é *${f.nome}* e quero fazer uma *simulação de financiamento* ${EMOJI.house}
 
 ${EMOJI.clipboard} *Minhas informações:*
 
@@ -117,6 +119,16 @@ export function SimulacaoFinanciamentoModal({ open, onClose }: { open: boolean; 
             <p className="mt-2 text-sm text-ink-950/60">{simulacaoFinanciamento.subtitulo}</p>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+              <Field label="Qual é o seu nome?">
+                <input
+                  required
+                  value={form.nome}
+                  onChange={(e) => set("nome", e.target.value)}
+                  placeholder="Ex: Maria Silva"
+                  className={fieldClass}
+                />
+              </Field>
+
               <Field label="Qual é sua renda familiar mensal?">
                 <input
                   required
