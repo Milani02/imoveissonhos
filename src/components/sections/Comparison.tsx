@@ -45,7 +45,7 @@ function Column({
 
 export function Comparison() {
   return (
-    <section id="comparativo" className="relative overflow-hidden bg-ink-950 px-5 py-24 sm:px-8 sm:py-32">
+    <section id="comparativo" className="relative overflow-hidden bg-ink-950 px-5 py-16 sm:px-8 sm:py-32">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(242,194,48,0.08),_transparent_60%)]" />
       <div className="relative mx-auto max-w-6xl">
         <Reveal className="mx-auto max-w-2xl text-center">

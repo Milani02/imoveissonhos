@@ -26,7 +26,7 @@ export function Servicos() {
   const cardClass = "group flex h-full w-full flex-col rounded-2xl bg-cream-50 p-7 text-left transition-transform duration-300 hover:-translate-y-1"
 
   return (
-    <section className="bg-ink-950 px-5 py-24 sm:px-8 sm:py-32">
+    <section className="bg-ink-950 px-5 py-16 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <Reveal className="max-w-2xl">
           <span className="text-xs font-bold tracking-[0.25em] text-gold-500 uppercase">{servicos.eyebrow}</span>

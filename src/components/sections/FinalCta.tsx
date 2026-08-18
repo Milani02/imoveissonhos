@@ -7,7 +7,7 @@ import { finalCta, waLink, waMessages } from "../../lib/content"
 
 export function FinalCta() {
   return (
-    <section className="relative overflow-hidden bg-ink-950 px-5 py-28 sm:px-8 sm:py-40">
+    <section className="relative overflow-hidden bg-ink-950 px-5 py-20 sm:px-8 sm:py-40">
       <div className="pointer-events-none absolute inset-0">
         <motion.div
           animate={{ opacity: [0.5, 0.9, 0.5] }}

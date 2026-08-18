@@ -69,7 +69,7 @@ function TiltCard({
 
 export function Diferenciais() {
   return (
-    <section id="diferenciais" className="bg-cream-50 px-5 py-24 sm:px-8 sm:py-32">
+    <section id="diferenciais" className="bg-cream-50 px-5 py-16 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <Reveal className="max-w-2xl">
           <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">{diferenciais.eyebrow}</span>

@@ -9,7 +9,7 @@ const destaques = slugsEmDestaque.map((slug) => lancamentos.find((l) => l.slug =
 
 export function LancamentosPreview() {
   return (
-    <section id="lancamentos" className="bg-cream-50 px-5 py-24 sm:px-8 sm:py-32">
+    <section id="lancamentos" className="bg-cream-50 px-5 py-16 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <Reveal className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-2xl">

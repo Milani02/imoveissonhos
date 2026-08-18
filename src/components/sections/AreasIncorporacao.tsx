@@ -74,7 +74,7 @@ export function AreasIncorporacao() {
   const comercial = areasIncorporacao.filter((a) => a.status === "comercial")
 
   return (
-    <section className="bg-ink-950 px-5 py-20 sm:px-8 sm:py-28">
+    <section className="bg-ink-950 px-5 py-14 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <Reveal className="max-w-2xl">
           <span className="text-xs font-bold tracking-[0.25em] text-gold-500 uppercase">Para incorporadoras e construtoras</span>

@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Star, Quote } from "lucide-react"
 import { WhatsAppIcon } from "./WhatsAppIcon"
 
@@ -10,6 +11,8 @@ interface TestimonialCardProps {
 
 export function TestimonialCard({ texto, nome, variant = "dark", className }: TestimonialCardProps) {
   const dark = variant === "dark"
+  const [expanded, setExpanded] = useState(false)
+  const longo = texto.length > 220
 
   return (
     <div
@@ -26,9 +29,22 @@ export function TestimonialCard({ texto, nome, variant = "dark", className }: Te
         <Quote className={`h-6 w-6 ${dark ? "text-gold-500/30" : "text-gold-600/25"}`} />
       </div>
 
-      <p className={`mt-5 flex-1 text-sm leading-relaxed sm:text-base ${dark ? "text-cream-100/80" : "text-ink-950/70"}`}>
+      <p
+        className={`mt-5 flex-1 text-sm leading-relaxed sm:text-base ${dark ? "text-cream-100/80" : "text-ink-950/70"} ${
+          longo && !expanded ? "line-clamp-5 sm:line-clamp-none" : ""
+        }`}
+      >
         {texto}
       </p>
+      {longo && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className={`mt-2 self-start text-xs font-bold ${dark ? "text-gold-400" : "text-gold-600"} sm:hidden`}
+        >
+          {expanded ? "Ler menos" : "Ler mais"}
+        </button>
+      )}
 
       <div className={`mt-6 flex items-center gap-3 border-t pt-5 ${dark ? "border-cream-50/10" : "border-ink-950/10"}`}>
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-500/15 font-display text-sm font-semibold text-gold-600">

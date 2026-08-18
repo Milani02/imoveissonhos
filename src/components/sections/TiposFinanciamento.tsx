@@ -33,7 +33,7 @@ function TipoCard({ tipo }: { tipo: (typeof tiposFinanciamento.tipos)[number] })
 
 export function TiposFinanciamento() {
   return (
-    <section className="bg-cream-50 px-5 py-24 sm:px-8 sm:py-32">
+    <section className="bg-cream-50 px-5 py-16 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-7xl">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-bold tracking-[0.25em] text-gold-600 uppercase">{tiposFinanciamento.eyebrow}</span>
