@@ -28,17 +28,38 @@ const initialState: FormState = {
   idade: "",
 }
 
-function buildMessage(f: FormState): string {
-  return `Olá! Quero fazer uma simulação de financiamento. Seguem minhas informações:
+// Emojis via \u{...} (não literais): evita corrupção de caracteres multi-byte
+// observada na transferência do módulo pelo dev server neste ambiente.
+const EMOJI = {
+  wave: "\u{1F44B}", // 👋
+  house: "\u{1F3E1}", // 🏡
+  clipboard: "\u{1F4CB}", // 📋
+  money: "\u{1F4B0}", // 💰
+  ring: "\u{1F48D}", // 💍
+  bank: "\u{1F3E6}", // 🏦
+  key: "\u{1F511}", // 🔑
+  banknote: "\u{1F4B5}", // 💵
+  pin: "\u{1F4CD}", // 📍
+  card: "\u{1F4B3}", // 💳
+  cake: "\u{1F382}", // 🎂
+  smile: "\u{1F60A}", // 😊
+} as const
 
-Renda familiar mensal: ${f.renda}
-Estado civil: ${f.estadoCivil}
-Possui FGTS para usar na compra: ${f.fgts}
-Já possui imóvel no nome: ${f.jaPossuiImovel}
-Faixa de valor do imóvel: ${f.faixaValor}
-Cidade desejada: ${f.cidade}
-Valor de entrada: ${f.entrada}
-Idade: ${f.idade}`
+function buildMessage(f: FormState): string {
+  return `Olá! ${EMOJI.wave} Quero fazer uma *simulação de financiamento* ${EMOJI.house}
+
+${EMOJI.clipboard} *Minhas informações:*
+
+${EMOJI.money} Renda familiar mensal: ${f.renda}
+${EMOJI.ring} Estado civil: ${f.estadoCivil}
+${EMOJI.bank} FGTS para usar na compra: ${f.fgts}
+${EMOJI.key} Já possui imóvel no nome: ${f.jaPossuiImovel}
+${EMOJI.banknote} Faixa de valor do imóvel: ${f.faixaValor}
+${EMOJI.pin} Cidade desejada: ${f.cidade}
+${EMOJI.card} Valor de entrada: ${f.entrada}
+${EMOJI.cake} Idade: ${f.idade}
+
+Aguardo o contato! ${EMOJI.smile}`
 }
 
 const fieldClass =
