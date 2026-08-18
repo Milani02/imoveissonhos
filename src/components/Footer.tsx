@@ -57,6 +57,21 @@ export function Footer() {
                 ))}
               </ul>
             </div>
+            <div>
+              <h4 className="text-xs font-bold tracking-[0.2em] text-gold-500 uppercase">Trabalhe conosco</h4>
+              <ul className="mt-4 space-y-2.5">
+                <li>
+                  <a
+                    href={waLink(waMessages.trabalheConosco)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-cream-100/65 transition-colors hover:text-gold-400"
+                  >
+                    Faça parte do time
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
