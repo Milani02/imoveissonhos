@@ -13,9 +13,9 @@ export function Home() {
       <Hero />
       <CinematicScroll />
       <CitiesMarquee />
+      <LancamentosPreview />
       <Diferenciais />
       <Servicos />
-      <LancamentosPreview />
       <Depoimentos />
       <FinalCta />
     </>
