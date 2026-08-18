@@ -6,7 +6,24 @@ import { diferenciais } from "../../lib/content"
 
 const icons: Record<string, LucideIcon> = { Smartphone, Building2, Wallet, HeartHandshake }
 
-function TiltCard({ icon, title, description }: { icon: string; title: string; description: string }) {
+const imagemModules = import.meta.glob<{ default: string }>("../../assets/diferenciais/*.webp", { eager: true })
+
+function imagemFor(slug: string): string | undefined {
+  const mod = Object.entries(imagemModules).find(([filePath]) => filePath.endsWith(`/${slug}.webp`))
+  return mod?.[1].default
+}
+
+function TiltCard({
+  icon,
+  title,
+  description,
+  imagem,
+}: {
+  icon: string
+  title: string
+  description: string
+  imagem?: string
+}) {
   const Icon = icons[icon]
   const ref = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
@@ -34,6 +51,11 @@ function TiltCard({ icon, title, description }: { icon: string; title: string; d
         style={{ rotateX, rotateY, transformPerspective: 800 }}
         className="group relative h-full overflow-hidden rounded-2xl border border-ink-950/8 bg-white/60 p-7 shadow-[0_1px_0_rgba(0,0,0,0.03)] backdrop-blur-sm transition-shadow hover:shadow-[0_20px_50px_-20px_rgba(13,12,10,0.25)]"
       >
+        {imagem && (
+          <div className="-mx-7 -mt-7 mb-6 aspect-[4/3] overflow-hidden">
+            <img src={imagem} alt="" loading="lazy" className="h-full w-full object-cover" />
+          </div>
+        )}
         <div className="absolute -top-10 -right-10 h-28 w-28 rounded-full bg-gold-400/0 blur-2xl transition-colors duration-500 group-hover:bg-gold-400/25" />
         <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-ink-950 text-gold-400 transition-transform duration-300 group-hover:scale-110">
           <Icon className="h-6 w-6" strokeWidth={1.75} />
@@ -59,7 +81,13 @@ export function Diferenciais() {
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" stagger={0.12}>
           {diferenciais.cards.map((card) => (
-            <TiltCard key={card.title} icon={card.icon} title={card.title} description={card.description} />
+            <TiltCard
+              key={card.title}
+              icon={card.icon}
+              title={card.title}
+              description={card.description}
+              imagem={imagemFor(card.slug)}
+            />
           ))}
         </StaggerGroup>
       </div>

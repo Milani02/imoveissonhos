@@ -59,21 +59,25 @@ export const diferenciais = {
   body: "Somos uma imobiliária 100% digital, focada em lançamentos — mas também com casas e apartamentos prontos pra morar. Do primeiro contato à assinatura, você é acompanhado de perto.",
   cards: [
     {
+      slug: "atendimento-online",
       icon: "Smartphone",
       title: "Atendimento 100% Online",
       description: "Entendemos o que você procura, apresentamos as opções e fazemos a simulação sem sair de casa.",
     },
     {
+      slug: "foco-lancamentos",
       icon: "Building2",
       title: "Foco em Lançamentos",
       description: "Acesso a empreendimentos saindo do papel, com condições exclusivas de pré-lançamento.",
     },
     {
+      slug: "entrada-parcelada",
       icon: "Wallet",
       title: "Entrada 100% Parcelada",
       description: "Você não precisa ter tudo guardado hoje pra começar a conquistar seu imóvel.",
     },
     {
+      slug: "acompanhamento-completo",
       icon: "HeartHandshake",
       title: "Acompanhamento Completo",
       description: "Após o online, encaminhamos você pra um atendimento presencial junto à construtora responsável.",
