@@ -13,7 +13,7 @@ export function Servicos() {
           </h2>
         </Reveal>
 
-        <StaggerGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" stagger={0.1}>
+        <StaggerGroup className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2" stagger={0.1}>
           {servicos.cards.map((card) => (
             <StaggerItem key={card.title}>
               <a

@@ -84,7 +84,7 @@ export const diferenciais = {
 
 export const servicos = {
   eyebrow: "Como podemos ajudar",
-  heading: "Três formas de dar o próximo passo",
+  heading: "Qual é o seu próximo passo?",
   cards: [
     {
       tag: "Não achou?",
@@ -101,14 +101,6 @@ export const servicos = {
         "Não é apenas um simulador de financiamento — é uma consultoria one-to-one completa pra facilitar ainda mais a sua vida e te ajudar a realizar o seu sonho.",
       cta: "Iniciar consultoria",
       message: "consultoria" as const,
-    },
-    {
-      tag: "Quer fazer parte do time?",
-      title: "Trabalhe Conosco!",
-      description:
-        "Buscamos pessoas apaixonadas por realizar sonhos. Envie seu contato pra gente e venha fazer parte do time Imóveis dos Sonhos.",
-      cta: "Quero trabalhar com vocês",
-      message: "trabalheConosco" as const,
     },
   ],
 }
